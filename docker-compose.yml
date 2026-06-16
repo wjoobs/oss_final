@@ -1,0 +1,16 @@
+services:
+  back:
+    build: ./back
+    container_name: kbo-recommender-back
+    ports:
+      - "8000:8000"
+
+  front:
+    build: ./front
+    container_name: kbo-recommender-front
+    ports:
+      - "8501:8501"
+    environment:
+      API_URL: http://back:8000
+    depends_on:
+      - back
